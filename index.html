@@ -24,10 +24,332 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+          <h1>Git</h1>
+          <p><a href="https://github.com/lubien" target="_blank">@lubien</a></p>
+        </section>
+
+				<section>
+          <h2>O que é Git?</h2>
+        </section>
+
+        <section data-background-image="images/behold.jpg">
+          <h2>Creazione di Git</h2>
+          <p class="fragment fade-up">
+            <img src="images/linus.jpg" alt="You Know Who Did"/>
+          </p>
+        </section>
+
+        <section>
+          <blockquote>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</blockquote>
+        </section>
+
+        <section>
+          <h2>Por que usar?</h2>
+
+          <ul>
+            <li>
+              Controle de Versão
+
+              <ul>
+                <li class="fragment fade-up">Quem?</li>
+                <li class="fragment fade-up">Quando?</li>
+                <li class="fragment fade-up">O que?</li>
+                <li class="fragment fade-up">Por que?</li>
+              </ul>
+            </li>
+            <li>
+              Colaboração
+
+              <ul>
+                <li class="fragment fade-up">Sincronização</li>
+                <li class="fragment fade-up">Distribuído</li>
+                <li class="fragment fade-up">Offline</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>Instalando Git</h2>
+          </section>
+
+          <section>
+            <img src="images/scm.png" alt="Download" />
+
+            <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ## Configuração
+
+              ```sh
+              $ git config --global user.name "lubien"
+              $ git config --global user.email "lubien1996@gmail.com"
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```sh
+              $ cat ~/.gitconfig
+              [user]
+                      name = lubien
+                      email = lubien1996@gmail.com
+              [push]
+                      default = matching
+
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Primeiros passos</h2>
+          </section>
+
+          <section>
+            <h2>Repositórios</h2>
+
+            <ul>
+              <li class="fragment fade-up">Também chamados carinhosamente de "repo"</li>
+              <li class="fragment fade-up">Local ou remoto</li>
+              <li class="fragment fade-up">Um por projeto <span class="fragment fade-up">(geralmente)</span></li>
+            </ul>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ## `git init`
+
+              ```sh
+              $ mkdir projeto # cria pasta
+              $ cd projeto # entra na pasta
+
+              $ git init # inicializa o repo
+              Initialized empty Git repository in ~/dev/projeto/.git/
+
+              $ ls .git # vejamos a pasta oculta
+              branches	config	description	HEAD	hooks	info	objects	refs
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ## `git status`
+
+              ```sh
+              $ git status
+              On branch master #1
+
+              No commits yet #2
+
+              nothing to commit #3
+              ```
+            </textarea>
+          </section>
+
+          <section>
+            <h2>Branchs e Commits</h2>
+
+            <img src="images/branch-1.png"/>
+          </section>
+
+          <section>
+            <h2>Recapitulando</h2>
+
+            <ul>
+              <li class="fragment fade-up"><code>git init</code></li>
+              <li class="fragment fade-up"><code>git status</code></li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Meu Primeiro Commit</h2>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```sh
+              $ touch teste.txt # criar o arquivo
+              # edite o arquivo
+              $ cat teste.txt
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+              no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+              no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```sh
+              $ git status
+              On branch master
+
+              No commits yet
+
+              Untracked files: # 1
+                      teste.txt
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              # `git add`
+
+              ```sh
+              $ git add teste.txt #1
+              $ git status
+              On branch master
+
+              No commits yet
+
+              Changes to be committed: #2
+                (use "git rm --cached <file>..." to unstage)
+
+                      new file:   teste.txt
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              # `git commit`
+
+              ```sh
+              $ git commit -m "Meu primeiro commit" #1
+              [master (root-commit) d5f6d8d] Meu primeiro commit
+               1 file changed, 12 insertions(+) # 2
+               create mode 100644 teste.txt
+
+              $ git status
+              On branch master
+              nothing to commit, working tree clean
+              ```
+            </textarea>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              # `git log`
+
+              ```sh
+              $ git log
+              commit d5f6d8d1083c720be5472564e62920fb5af67a9b (HEAD -> master)
+              Author: lubien <lubien1996@gmail.com>
+              Date:   Wed Oct 10 13:21:24 2018 -0300
+
+                  Meu primeiro commit
+              ```
+            </textarea>
+          </section>
+
+          <section>
+            <h2>3 fases de uma modificação</h2>
+
+            <img src="images/untracked-staging-commited.png"/>
+          </section>
+
+          <section>
+            <h2>Recapitulando</h2>
+
+            <ul>
+              <li class="fragment fade-up"><code>git add</code></li>
+              <li class="fragment fade-up"><code>git commit</code></li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Minha primeira modificação</h2>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              # `git checkout`
+
+              ```sh
+              # Modifica o arquivo teste.txt
+
+              $ git status
+              On branch master
+              Changes not staged for commit: #1
+                (use "git add <file>..." to [...]) # 2
+                (use "git checkout -- <file>..." to discard changes) #3
+
+                      modified:   teste.txt #4
+              ```
+            </textarea>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              ## `git diff`
+
+              ```diff
+              $ git diff
+              diff --git a/teste.txt b/teste.txt
+              index 0435908..98de359 100644
+              --- a/teste.txt
+              +++ b/teste.txt
+              @@ -2,11 +2,10 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+               tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+               vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+               no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              -Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+               tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+               vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+               no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              -Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              +Lorem ipsum adicional dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+               tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+              -vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+              +vero eos et et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+               no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              ```
+            </textarea>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              ## `git reset`
+
+              ```sh
+              $ git add teste.txt
+
+              $ git status
+              On branch master
+              Changes to be committed: #1
+                (use "git reset HEAD <file>..." to unstage) #2
+
+                      modified:   teste.txt #3
+              ```
+            </textarea>
+          </section>
+        </section>
 			</div>
 		</div>
+
+    <a href="https://github.com/lubien/git-talk"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -44,6 +366,9 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+      Reveal.addEventListener( 'ready', function( event ) {
+        Reveal.slide(8, -1)
+      } );
 		</script>
 	</body>
 </html>
